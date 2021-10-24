@@ -18,7 +18,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.11.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -28,6 +28,16 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  flutter_icons: ^1.1.0
+  list_tile_switch: ^1.0.0
+  ionicons: ^0.1.2
+  provider: ^6.0.1
+  shared_preferences: ^0.5.12+4
+  flutter_staggered_grid_view: ^0.4.1
+  badges: ^2.0.1
+  backdrop: ^0.6.2
+  carousel_pro: ^1.0.0
+  flutter_swiper: ^1.1.6
 
 dev_dependencies:
   flutter_test:
@@ -45,9 +55,26 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/images/emptycart.png
+    - assets/images/carousel1.png
+    - assets/images/carousel2.jpeg
+    - assets/images/carousel3.jpg
+    - assets/images/carousel4.png
+    - assets/images/addidas.jpg
+    - assets/images/apple.jpg
+    - assets/images/dell.jpg
+    - assets/images/h&m.jpg
+    - assets/images/nike.jpg
+    - assets/images/samsung.jpg
+    - assets/images/huawei.jpg
+    - assets/images/CatBeauty.jpg
+    - assets/images/CatClothes.jpg
+    - assets/images/CatFurniture.jpg
+    - assets/images/CatLaptops.png
+    - assets/images/CatPhones.png
+    - assets/images/CatShoes.jpg
+    - assets/images/CatWatches.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
