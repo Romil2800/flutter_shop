@@ -21,4 +21,6 @@ class MyColors {
   static Color starterColor = Color(0xFF009603);
   static Color endColor = Color(0xFF56DA78);
   static Color endColor2 = Color(0xFFA0C2A9);
+
+  static Color white = Color(0xFFFFFFFF);
 }

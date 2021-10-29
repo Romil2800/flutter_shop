@@ -3,8 +3,14 @@ import 'package:backdrop/scaffold.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/consts/colors.dart';
+import 'package:flutter_shop/inner_screens/brands_navigation_rail.dart';
+import 'package:flutter_shop/provider/productProvider.dart';
+import 'package:flutter_shop/screens/feeds.dart';
+import 'package:flutter_shop/widgets/backlayer.dart';
 import 'package:flutter_shop/widgets/category.dart';
+import 'package:flutter_shop/widgets/popular_products.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -31,6 +37,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final productsData = Provider.of<Products>(context);
+    final popularItems = productsData.popularProducts;
+
     return Scaffold(
         body: BackdropScaffold(
       frontLayerBackgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -65,9 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      backLayer: Center(
-        child: Text("Back Layer"),
-      ),
+      backLayer: BackLayerMenu(),
       frontLayer: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -107,7 +114,6 @@ class _HomeScreenState extends State<HomeScreen> {
             Container(
                 width: double.infinity,
                 height: 180,
-                
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: 7,
@@ -149,7 +155,12 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Swiper(
                 itemCount: _brandImages.length,
                 autoplay: true,
-                onTap: (index) {},
+                viewportFraction: 0.8,
+                onTap: (index) {
+                  Navigator.of(context).pushNamed(
+                      BrandNavigationRailScreen.routeName,
+                      arguments: {index});
+                },
                 itemBuilder: (context, index) {
                   return ClipRRect(
                     borderRadius: BorderRadius.circular(10),
@@ -163,7 +174,54 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 },
               ),
-            )
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Text(
+                    'Popular Products',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w800,
+                      fontSize: 20,
+                    ),
+                  ),
+                  Spacer(),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(FeedsScreen.routeName,arguments: 'popular');
+                    },
+                    child: Text(
+                      'View All..',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w800,
+                        fontSize: 15,
+                        color: Colors.red,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              width: double.infinity,
+              height: 285,
+              margin: EdgeInsets.symmetric(horizontal: 3),
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: popularItems.length,
+                  itemBuilder: (BuildContext ctx, int index) {
+                    return ChangeNotifierProvider.value(
+                      value: popularItems[index],
+                      child: PopularProducts(
+                          // imageUrl: popularItems[index].imageUrl,
+                          // title: popularItems[index].title,
+                          // description: popularItems[index].description,
+                          // price: popularItems[index].price,
+                          ),
+                    );
+                  }),
+            ),
           ],
         ),
       ),

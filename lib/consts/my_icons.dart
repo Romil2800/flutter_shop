@@ -8,5 +8,7 @@ class MyAppIcons {
   static IconData user = Feather.user;
   static IconData cart = MaterialCommunityIcons.cart;
   static IconData bag = Feather.shopping_bag;
-    static IconData trash = Feather.trash;
+  static IconData trash = Feather.trash;
+  static IconData wishlist = Feather.star;
+  static IconData upload = Feather.upload;
 }

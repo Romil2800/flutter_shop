@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_shop/consts/colors.dart';
 import 'package:flutter_shop/provider/dark_theme_provider.dart';
+import 'package:flutter_shop/screens/cart.dart';
+import 'package:flutter_shop/widgets/wishlist.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
 import 'package:provider/provider.dart';
 
@@ -119,7 +121,8 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     Material(
                       color: Colors.transparent,
                       child: InkWell(
-                        onTap: () {},
+                        onTap: () => Navigator.of(context)
+                            .pushNamed(WishlistScreen.routeName),
                         splashColor: Colors.red,
                         child: ListTile(
                           title: Text('Wishlist'),
@@ -128,11 +131,18 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                         ),
                       ),
                     ),
-                    ListTile(
-                      onTap: () {},
-                      title: Text('Cart'),
-                      trailing: Icon(Icons.chevron_right_rounded),
-                      leading: Icon(Ionicons.md_cart),
+                    Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        onTap: () => Navigator.of(context)
+                            .pushNamed(CartScreen.routeName),
+                        splashColor: Colors.red,
+                        child: ListTile(
+                          title: Text('Cart'),
+                          trailing: Icon(Icons.chevron_right_rounded),
+                          leading: Icon(Ionicons.md_cart),
+                        ),
+                      ),
                     ),
                     ListTile(
                       title: Text('My Orders'),
