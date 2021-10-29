@@ -5,6 +5,7 @@ import 'package:flutter_shop/consts/colors.dart';
 import 'package:flutter_shop/consts/my_icons.dart';
 import 'package:flutter_shop/provider/cart_provider.dart';
 import 'package:flutter_shop/provider/dark_theme_provider.dart';
+import 'package:flutter_shop/provider/favs_provider.dart';
 import 'package:flutter_shop/provider/productProvider.dart';
 import 'package:flutter_shop/screens/cart.dart';
 import 'package:flutter_shop/widgets/feeds_products.dart';
@@ -24,11 +25,12 @@ class _ProductDetailsState extends State<ProductDetails> {
   @override
   Widget build(BuildContext context) {
     final themeState = Provider.of<DarkThemeProvider>(context);
-    final productsData = Provider.of<Products>(context,listen: false);
+    final productsData = Provider.of<Products>(context, listen: false);
     final productId = ModalRoute.of(context).settings.arguments as String;
     final prodAttr = productsData.findById(productId);
     final productsList = productsData.products;
     final cartProvider = Provider.of<CartProvider>(context);
+    final favsProvider = Provider.of<FavsProvider>(context);
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -348,11 +350,17 @@ class _ProductDetailsState extends State<ProductDetails> {
                     height: 50,
                     child: InkWell(
                       splashColor: MyColors.favColor,
-                      onTap: () {},
+                      onTap: () {
+                        favsProvider.addAndRemoveFromFavs(productId,
+                            prodAttr.price, prodAttr.title, prodAttr.imageUrl);
+                      },
                       child: Center(
-                        child: Icon(
+                        child: Icon( favsProvider.getFavsItems.containsKey(productId)?Icons.favorite:
                           MyAppIcons.wishlist,
-                          color: MyColors.white,
+                          color:
+                              favsProvider.getFavsItems.containsKey(productId)
+                                  ? Colors.red
+                                  : MyColors.white,
                         ),
                       ),
                     ),

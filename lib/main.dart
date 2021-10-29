@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/inner_screens/product_details.dart';
 import 'package:flutter_shop/provider/dark_theme_provider.dart';
+import 'package:flutter_shop/provider/favs_provider.dart';
 import 'package:flutter_shop/provider/productProvider.dart';
 import 'package:flutter_shop/screens/cart.dart';
 import 'package:flutter_shop/inner_screens/categories_feeds.dart';
@@ -54,11 +55,18 @@ class _MyAppState extends State<MyApp> {
               return CartProvider();
             },
           ),
+          ChangeNotifierProvider(
+            create: (_) {
+              return FavsProvider();
+            },
+          ),
         ],
+        
         child: Consumer<DarkThemeProvider>(
           builder: (context, themeData, child) {
             return MaterialApp(
               title: 'Flutter Demo',
+              debugShowCheckedModeBanner: false,
               theme: ThemeData(
                 primarySwatch: Colors.blue,
                 visualDensity: VisualDensity.adaptivePlatformDensity,

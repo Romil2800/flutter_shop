@@ -3,6 +3,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_shop/inner_screens/product_details.dart';
 import 'package:flutter_shop/models/product.dart';
 import 'package:flutter_shop/provider/cart_provider.dart';
+import 'package:flutter_shop/provider/favs_provider.dart';
 import 'package:provider/provider.dart';
 
 class PopularProducts extends StatelessWidget {
@@ -21,6 +22,7 @@ class PopularProducts extends StatelessWidget {
   Widget build(BuildContext context) {
     final productsAttributes = Provider.of<Product>(context);
     final cartProvider = Provider.of<CartProvider>(context);
+    final favsProvider = Provider.of<FavsProvider>(context);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -61,7 +63,10 @@ class PopularProducts extends StatelessWidget {
                       top: 8,
                       child: Icon(
                         Entypo.star,
-                        color: Colors.grey.shade800,
+                        color: favsProvider.getFavsItems
+                                .containsKey(productsAttributes.id)
+                            ? Colors.red
+                            : Colors.grey.shade800,
                       ),
                     ),
                     Positioned(
@@ -69,7 +74,10 @@ class PopularProducts extends StatelessWidget {
                       top: 8,
                       child: Icon(
                         Entypo.star_outlined,
-                        color: Colors.white,
+                        color: favsProvider.getFavsItems
+                                .containsKey(productsAttributes.id)
+                            ? Colors.red
+                            : Colors.white,
                       ),
                     ),
                     Positioned(
@@ -136,9 +144,9 @@ class PopularProducts extends StatelessWidget {
                                   padding: const EdgeInsets.all(8.0),
                                   child: Icon(
                                     cartProvider.getCartItems
-                                        .containsKey(productsAttributes.id)
-                                    ?MaterialCommunityIcons.check_all:
-                                    MaterialCommunityIcons.cart_plus,
+                                            .containsKey(productsAttributes.id)
+                                        ? MaterialCommunityIcons.check_all
+                                        : MaterialCommunityIcons.cart_plus,
                                     size: 25,
                                     color: Colors.black,
                                   ),

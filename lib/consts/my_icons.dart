@@ -9,6 +9,6 @@ class MyAppIcons {
   static IconData cart = MaterialCommunityIcons.cart;
   static IconData bag = Feather.shopping_bag;
   static IconData trash = Feather.trash;
-  static IconData wishlist = Feather.star;
+  static IconData wishlist = Feather.heart;
   static IconData upload = Feather.upload;
 }
