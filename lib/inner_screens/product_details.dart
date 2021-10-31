@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/consts/colors.dart';
 import 'package:flutter_shop/consts/my_icons.dart';
@@ -258,26 +259,46 @@ class _ProductDetailsState extends State<ProductDetails> {
                 title: Text(
                   "Detail",
                   style:
-                      TextStyle(fontSize: 16.0, fontWeight: FontWeight.normal),
+                      TextStyle(fontSize: 22.0, fontWeight: FontWeight.normal),
                 ),
                 actions: <Widget>[
-                  IconButton(
-                    icon: Icon(
-                      MyAppIcons.wishlist,
-                      color: MyColors.favColor,
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).pushNamed(WishlistScreen.routeName);
-                    },
+                  Consumer<FavsProvider>(
+                    builder: ((_, favs, ch) => Badge(
+                          badgeColor: MyColors.cartBadgeColor,
+                          animationType: BadgeAnimationType.slide,
+                          toAnimate: true,
+                          position: BadgePosition.topEnd(top: 5, end: 7),
+                          badgeContent:
+                              Text(favs.getFavsItems.length.toString()),
+                          child: IconButton(
+                            icon: Icon(
+                              MyAppIcons.wishlist,
+                              color: MyColors.favColor,
+                            ),
+                            onPressed: () {
+                              Navigator.of(context)
+                                  .pushNamed(WishlistScreen.routeName);
+                            },
+                          ),
+                        )),
                   ),
-                  IconButton(
-                    icon: Icon(
-                      MyAppIcons.cart,
-                      color: MyColors.cartColor,
+                  Consumer<CartProvider>(
+                    builder: (_, cart, ch) => Badge(
+                      badgeColor: MyColors.cartBadgeColor,
+                      animationType: BadgeAnimationType.slide,
+                      toAnimate: true,
+                      position: BadgePosition.topEnd(top: 5, end: 7),
+                      badgeContent: Text(cart.getCartItems.length.toString()),
+                      child: IconButton(
+                        icon: Icon(
+                          MyAppIcons.cart,
+                          color: MyColors.cartColor,
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pushNamed(CartScreen.routeName);
+                        },
+                      ),
                     ),
-                    onPressed: () {
-                      Navigator.of(context).pushNamed(CartScreen.routeName);
-                    },
                   ),
                 ]),
           ),
@@ -355,8 +376,10 @@ class _ProductDetailsState extends State<ProductDetails> {
                             prodAttr.price, prodAttr.title, prodAttr.imageUrl);
                       },
                       child: Center(
-                        child: Icon( favsProvider.getFavsItems.containsKey(productId)?Icons.favorite:
-                          MyAppIcons.wishlist,
+                        child: Icon(
+                          favsProvider.getFavsItems.containsKey(productId)
+                              ? Icons.favorite
+                              : MyAppIcons.wishlist,
                           color:
                               favsProvider.getFavsItems.containsKey(productId)
                                   ? Colors.red

@@ -2,6 +2,7 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/inner_screens/product_details.dart';
 import 'package:flutter_shop/models/product.dart';
+import 'package:flutter_shop/widgets/feeds.dialog.dart';
 import 'package:provider/provider.dart';
 
 class FeedProducts extends StatefulWidget {
@@ -104,7 +105,15 @@ class _FeedProductsState extends State<FeedProducts> {
                         Material(
                           color: Colors.transparent,
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () async {
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return FeedDialog(
+                                      productId: productsAttribute.id);
+                                },
+                              );
+                            },
                             borderRadius: BorderRadius.circular(18.0),
                             child: Icon(
                               Icons.more_horiz_outlined,

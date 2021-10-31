@@ -186,8 +186,8 @@ class _CartFullState extends State<CartFull> {
                             padding: const EdgeInsets.all(8.0),
                             decoration: BoxDecoration(
                               gradient: LinearGradient(colors: [
-                                MyColors.gradientFStart,
-                                MyColors.gradientFEnd,
+                                MyColors.gradiendFStart,
+                                MyColors.gradiendFEnd,
                               ], stops: [
                                 0.0,
                                 0.7,

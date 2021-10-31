@@ -83,8 +83,8 @@ class CartScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
                   gradient: LinearGradient(colors: [
-                    MyColors.gradientFStart,
-                    MyColors.gradientFEnd,
+                    MyColors.gradiendFStart,
+                    MyColors.gradiendFEnd,
                   ], stops: [
                     0.0,
                     0.7,
