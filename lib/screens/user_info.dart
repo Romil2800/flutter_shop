@@ -3,6 +3,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_shop/consts/colors.dart';
 import 'package:flutter_shop/provider/dark_theme_provider.dart';
 import 'package:flutter_shop/screens/cart.dart';
+import 'package:flutter_shop/screens/landing_page.dart';
 import 'package:flutter_shop/widgets/wishlist.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
 import 'package:provider/provider.dart';
@@ -218,7 +219,10 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                           },
                                           child: Text('Cancel')),
                                       TextButton(
-                                          onPressed: () async {},
+                                          onPressed: () {
+                                            Navigator.pushNamed(
+                                                context, LandingPage.routeName);
+                                          },
                                           child: Text(
                                             'Ok',
                                             style: TextStyle(color: Colors.red),

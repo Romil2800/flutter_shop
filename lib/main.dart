@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/inner_screens/product_details.dart';
+import 'package:flutter_shop/inner_screens/upload_product_form.dart';
 import 'package:flutter_shop/provider/dark_theme_provider.dart';
 import 'package:flutter_shop/provider/favs_provider.dart';
 import 'package:flutter_shop/provider/productProvider.dart';
+import 'package:flutter_shop/screens/auth/login.dart';
+import 'package:flutter_shop/screens/auth/sign_up.dart';
 import 'package:flutter_shop/screens/cart.dart';
 import 'package:flutter_shop/inner_screens/categories_feeds.dart';
 import 'package:flutter_shop/screens/feeds.dart';
+import 'package:flutter_shop/screens/landing_page.dart';
+import 'package:flutter_shop/screens/main_screen.dart';
 import 'package:flutter_shop/widgets/wishlist.dart';
 import 'package:provider/provider.dart';
 
@@ -61,7 +66,6 @@ class _MyAppState extends State<MyApp> {
             },
           ),
         ],
-        
         child: Consumer<DarkThemeProvider>(
           builder: (context, themeData, child) {
             return MaterialApp(
@@ -71,7 +75,7 @@ class _MyAppState extends State<MyApp> {
                 primarySwatch: Colors.blue,
                 visualDensity: VisualDensity.adaptivePlatformDensity,
               ),
-              home: BottomBarScreen(),
+              home: MainScreens(),
               routes: {
                 //   '/': (ctx) => LandingPage(),
                 BrandNavigationRailScreen.routeName: (ctx) =>
@@ -82,6 +86,11 @@ class _MyAppState extends State<MyApp> {
                 ProductDetails.routeName: (ctx) => ProductDetails(),
                 CategoriesFeedsScreen.routeName: (ctx) =>
                     CategoriesFeedsScreen(),
+                LoginScreen.routeName: (ctx) => LoginScreen(),
+                SignUpScreen.routeName: (ctx) => SignUpScreen(),
+                BottomBarScreen.routeName: (ctx) => BottomBarScreen(),
+                LandingPage.routeName: (ctx) => LandingPage(),
+                UploadProductForm.routeName: (ctx) => UploadProductForm(),
               },
             );
           },

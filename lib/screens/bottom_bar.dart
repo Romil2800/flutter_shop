@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_shop/consts/my_icons.dart';
 import 'package:flutter_shop/screens/search.dart';
 import 'package:flutter_shop/screens/user_info.dart';
@@ -9,6 +8,7 @@ import 'feeds.dart';
 import 'home.dart';
 
 class BottomBarScreen extends StatefulWidget {
+  static const routeName = '/BottomBarScreen';
   @override
   _BottomBarScreenState createState() => _BottomBarScreenState();
 }
